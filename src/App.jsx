@@ -4,16 +4,8 @@ import { nanoid } from 'nanoid';
 import { contactsStorage } from './storage/contactsStorage';
 
 const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(contactsStorage.get());
   const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    const storedContacts = contactsStorage.get();
-
-    if (storedContacts.length) {
-      setContacts(storedContacts);
-    }
-  }, []);
 
   useEffect(() => {
     contactsStorage.set(contacts);
